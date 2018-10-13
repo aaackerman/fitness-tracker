@@ -13,7 +13,11 @@ class ImportsController < ApplicationController
       converters: :all
     )
 
-    CreateExerciseDataFromCSV.new(csv_from_params).process_spreadsheet
+    if CreateExerciseDataFromCSV.new(csv_from_params).process_spreadsheet
+      puts "IMPORT SUCCESSFUL"
+    else
+      puts "IMPORT FAILED"
+    end
   end
 
   private

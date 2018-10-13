@@ -1,4 +1,5 @@
 class Activity < ApplicationRecord
   has_one :exercise
-  validates :reps, :id, :name, :exercise_id, presence: :true
+  has_one :routine
+  validates :reps, :exercise_id, :routine_id, presence: :true
 end
