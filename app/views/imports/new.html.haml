@@ -1,0 +1,9 @@
+.row
+  %h2 Upload HeavySet CSV
+
+.row
+  =form_tag imports_path, multipart: true do
+    .row
+      =file_field_tag :import, { accepts: "csv", accept: "text/csv", required: "required" }
+    .row
+      =submit_tag "Submit", class: "btn waves-effect waves-light"

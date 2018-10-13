@@ -37,7 +37,6 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem "haml-rails", "~> 1.0"
 gem 'jquery-rails'
-gem 'bootstrap', '~> 4.1.3'
 
 group :test do
   gem 'rspec-rails'
