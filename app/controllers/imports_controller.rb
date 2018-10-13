@@ -18,6 +18,8 @@ class ImportsController < ApplicationController
     else
       puts "IMPORT FAILED"
     end
+
+    redirect_to new_imports_path
   end
 
   private

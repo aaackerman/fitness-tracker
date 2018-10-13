@@ -4,8 +4,8 @@ class CreateActivities < ActiveRecord::Migration[5.2]
       t.integer :exercise_id
       t.integer :routine_id
       t.integer :reps
-      t.integer :weight_lbs
-      t.integer :weight_kgs
+      t.float :weight_lbs
+      t.float :weight_kgs
       t.integer :height
       t.text :notes
       t.timestamps
