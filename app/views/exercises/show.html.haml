@@ -29,7 +29,7 @@
 =content_for :javascript do
   :javascript
     var ctx = document.getElementById("exercise-chart").getContext("2d");
-    var activities = #{@activities.reverse.to_json};
+    var activities = #{raw(@activities.reverse.to_json)};
     var labels = [];
     var data = [];
 
