@@ -2,12 +2,40 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title AlexFitness
+    %meta{name: "viewport", content:"width=device-width", "initial-scale"=> "1"}/
+    %title Alex's Fitness Tracker
     = csrf_meta_tags
     = csp_meta_tag
+    = javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+    = stylesheet_link_tag "https://fonts.googleapis.com/icon?family=Material+Icons", rel: "stylesheet"
     = stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"
+    = javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"
   %body
+    %nav.grey.darken-4
+      .nav-wrapper
+        %a.brand-logo.center{:href => exercises_path } Alex's Fitness Tracker
+        %a.sidenav-trigger{"data-target" => "mobile-demo", :href => "javascript:;"}
+          %i.material-icons menu
+
+        %ul.right.hide-on-med-and-down
+          %li
+            =link_to "Exercises", exercises_path
+          %li
+            =link_to "Routines", routines_path
+      %ul#mobile-demo.sidenav
+        %li
+          =link_to "Exercises", exercises_path
+        %li
+          =link_to "Routines", routines_path
+
     .container
       = yield
+      = yield :javascript
+
+:javascript
+  $(document).ready(function(){
+    $('.sidenav').sidenav();
+  });

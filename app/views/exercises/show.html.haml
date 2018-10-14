@@ -1,0 +1,22 @@
+%h2
+  =@exercise.name
+
+-@grouped_activities.each do |group|
+  .row
+    %h3=group[0].strftime("%A, %b %d")
+
+    %table
+      %thead
+        %tr
+          %th Performed at
+          %th Reps
+          %th Weight LBs
+          %th Weight KGs
+
+      %tbody
+        -group[1].reverse.each do |activity|
+          %tr
+            %td=activity.created_at.strftime("%I:%M:%S %p")
+            %td=activity.reps
+            %td=activity.weight_lbs
+            %td=activity.weight_kgs
