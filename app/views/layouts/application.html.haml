@@ -7,6 +7,7 @@
     = csrf_meta_tags
     = csp_meta_tag
     = javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+    = stylesheet_link_tag "https://fonts.googleapis.com/css?family=Montserrat"
     = stylesheet_link_tag "https://fonts.googleapis.com/icon?family=Material+Icons", rel: "stylesheet"
     = stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
@@ -16,7 +17,7 @@
   %body
     %nav.grey.darken-4
       .nav-wrapper
-        %a.brand-logo.center{:href => exercises_path } Alex's Fitness Tracker
+        %a.brand-logo.center{:href => routines_path } Alex's Fitness Tracker
         %a.sidenav-trigger{"data-target" => "mobile-demo", :href => "javascript:;"}
           %i.material-icons menu
 

@@ -19,7 +19,7 @@ class ImportsController < ApplicationController
       puts "IMPORT FAILED"
     end
 
-    redirect_to new_imports_path
+    redirect_to root_path
   end
 
   private

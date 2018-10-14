@@ -1,0 +1,9 @@
+%h2 All Routines
+
+.row
+  %ul
+
+  -@routines.each do |routine|
+    %li
+      =link_to routine.name, routine_path(routine)
+
