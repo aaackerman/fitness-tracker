@@ -1,5 +1,8 @@
-%h3
+%h3.center
   =@exercise.name
+
+.row
+  %canvas{ id: "exercise-chart" }
 
 -@grouped_activities.each do |group|
   .row
@@ -22,3 +25,66 @@
             %td=activity.weight_lbs
             %td=activity.weight_kgs
             %td=activity.notes
+
+=content_for :javascript do
+  :javascript
+    var ctx = document.getElementById("exercise-chart").getContext("2d");
+    var activities = #{@activities.reverse.to_json};
+    var labels = [];
+    var data = [];
+
+    for (var i = activities.length - 1; i >= 0; i--) {
+      var activity = activities[i];
+      var date = new Date(activity.created_at);
+      data.push({t: date, y: activity.weight_lbs, reps: activity.reps});
+
+      if (labels.indexOf(date) == -1) {
+        labels.push(date.toDateString());
+      }
+    }
+
+    var myChart = new Chart(ctx, {
+      type: 'line',
+      options: {
+        scales: {
+          yAxes: [{display: true, ticks: { min: 0 }}]
+        },
+        tooltips: {
+          callbacks: {
+            afterLabel: function(tooltipItem, data) {
+              var reps = data['datasets'][0]['data'][tooltipItem['index']].reps;
+
+              if (reps != null) {
+                return "Reps: " + reps;
+              } else {
+                return ""
+              }
+            }
+          }
+        }
+      },
+    data: {
+      labels: labels,
+      datasets: [{
+        label: 'Weight LBs',
+        data: data,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255,99,132,1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+        }]
+      }
+    });
