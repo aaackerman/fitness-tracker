@@ -4,9 +4,9 @@
 .row
   %canvas{ id: "exercise-chart" }
 
--@grouped_activities.each do |group|
+-@workouts.each do |workout|
   .row
-    %h4=group[0].strftime("%A, %b %d")
+    %h4=workout.date.strftime("%A, %b %d")
 
     %table.striped.responsive-table
       %thead
@@ -18,7 +18,7 @@
           %th Height
 
       %tbody
-        -group[1].reverse.each do |activity|
+        -workout.activities.reverse.each do |activity|
           %tr
             %td=activity.created_at.strftime("%I:%M:%S %p")
             %td=activity.reps
@@ -29,7 +29,7 @@
 =content_for :javascript do
   :javascript
     var ctx = document.getElementById("exercise-chart").getContext("2d");
-    var activities = #{raw(@activities.reverse.to_json)};
+    var activities = #{raw(@workouts.map(&:activities).flatten.reverse.to_json)};
     var labels = [];
     var data = [];
 

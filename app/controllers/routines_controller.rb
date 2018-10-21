@@ -6,13 +6,9 @@ class RoutinesController < ApplicationController
   def show
     @routine = Routine.find(params[:id])
 
-    @activities = Activity
-      .includes(:exercise)
+    @workouts = Workout
+      .includes(activities: :exercise)
       .where(routine_id: @routine.id)
       .order(created_at: :asc)
-
-    @grouped_activities = @activities.reverse.group_by do |activity|
-      activity.created_at.to_date
-    end
   end
 end

@@ -1,9 +1,9 @@
 %h3
   =@routine.name
 
--@grouped_activities.each do |group|
+-@workouts.each do |workout|
   .row
-    %h4=group[0].strftime("%A, %b %d")
+    %h4=workout.date.strftime("%A, %b %d")
 
     %table.striped.responsive-table
       %thead
@@ -16,7 +16,7 @@
           %th Height
 
       %tbody
-        -group[1].reverse.each do |activity|
+        -workout.activities.reverse.each do |activity|
           %tr
             %td
               =link_to activity.exercise.name, exercise_path(activity.exercise)

@@ -6,12 +6,9 @@ class ExercisesController < ApplicationController
   def show
     @exercise = Exercise.find(params[:id])
 
-    @activities = Activity
-      .where(exercise_id: @exercise.id)
+    @workouts = Workout
+      .includes(:activities)
+      .where(activities: { exercise_id: @exercise.id })
       .order(created_at: :asc)
-
-    @grouped_activities = @activities.reverse.group_by do |activity|
-      activity.created_at.to_date
-    end
   end
 end
