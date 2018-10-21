@@ -1,6 +1,7 @@
 class RoutinesController < ApplicationController
   def index
     @routines = Routine.all.order(name: :asc)
+    @workouts = Workout.last(4)
   end
 
   def show

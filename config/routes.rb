@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   resources :imports, only: [:new, :create]
   resources :exercises, only: [:index, :show]
   resources :routines, only: [:index, :show]
+  resources :workouts, only: [:show]
 end

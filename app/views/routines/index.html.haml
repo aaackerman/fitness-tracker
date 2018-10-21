@@ -1,4 +1,13 @@
-%h2 All Routines
+%h3 Last 4 workouts
+
+.row
+  %ul
+
+  -@workouts.each do |workout|
+    %li
+      =link_to workout.date.strftime("%A, %b %d"), workout_path(workout)
+
+%h3 All Routines
 
 .row
   %ul
@@ -6,4 +15,3 @@
   -@routines.each do |routine|
     %li
       =link_to routine.name, routine_path(routine)
-
