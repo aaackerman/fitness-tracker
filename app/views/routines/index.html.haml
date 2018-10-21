@@ -5,7 +5,7 @@
 
   -@workouts.each do |workout|
     %li
-      =link_to workout.date.strftime("%A, %b %d"), workout_path(workout)
+      =link_to "#{workout.date.strftime("%A, %b %d")} - #{workout.routine.name}", workout_path(workout)
 
 %h3 All Routines
 
