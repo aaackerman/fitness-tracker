@@ -10,6 +10,6 @@ class RoutinesController < ApplicationController
     @workouts = Workout
       .includes(activities: :exercise)
       .where(routine_id: @routine.id)
-      .order(created_at: :asc)
+      .order(created_at: :desc)
   end
 end

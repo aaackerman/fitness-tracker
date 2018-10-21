@@ -9,6 +9,5 @@ class ExercisesController < ApplicationController
     @workouts = Workout
       .includes(:activities)
       .where(activities: { exercise_id: @exercise.id })
-      .order(created_at: :asc)
   end
 end

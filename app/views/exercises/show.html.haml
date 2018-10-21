@@ -18,7 +18,7 @@
           %th Height
 
       %tbody
-        -workout.activities.reverse.each do |activity|
+        -workout.activities.each do |activity|
           %tr
             %td=activity.created_at.strftime("%I:%M:%S %p")
             %td=activity.reps

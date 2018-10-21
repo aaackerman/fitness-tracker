@@ -16,7 +16,7 @@
           %th Height
 
       %tbody
-        -workout.activities.reverse.each do |activity|
+        -workout.activities.each do |activity|
           %tr
             %td
               =link_to activity.exercise.name, exercise_path(activity.exercise)
